@@ -91,21 +91,21 @@ export default function HardwareSpecs() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--sp-2)' }}>
             {STAT_CARDS.map((card) => (
               <div
-                key={card.label}
+                key={card.number}
                 className="glass-3"
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: 'var(--sp-2)',
-                  padding: 'var(--sp-2) var(--sp-3)',
+                  gap: 'var(--sp-4)',
+                  padding: 'var(--sp-3)',
                   borderRadius: 'var(--r-lg)',
-                  height: '60px',
+                  minHeight: '60px',
                 }}
               >
                 <div
                   style={{
                     width: '3px',
-                    height: '60%',
+                    height: '24px',
                     background: 'var(--accent)',
                     borderRadius: '2px',
                     flexShrink: 0,
@@ -142,16 +142,17 @@ export default function HardwareSpecs() {
         {/* Right Column — Spec Table */}
         <div>
           {SPEC_ROWS.map((row, i) => (
-            <div
-              key={row.label}
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                height: '72px',
-                borderBottom: i < SPEC_ROWS.length - 1 ? '1px solid var(--border-subtle)' : 'none',
-                paddingLeft: 'var(--sp-3)',
-                background: row.highlight ? 'var(--accent-fill-6)' : 'transparent',
+              <div
+                key={row.label}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  minHeight: '72px',
+                  borderBottom: i < SPEC_ROWS.length - 1 ? '1px solid var(--border-subtle)' : 'none',
+                  padding: 'var(--sp-4) 0',
+                  paddingLeft: 'var(--sp-3)',
+                  background: row.highlight ? 'var(--accent-fill-6)' : 'transparent',
                 borderLeft: row.highlight ? '3px solid var(--accent)' : '3px solid transparent',
                 borderRadius: row.highlight ? 'var(--r-sm)' : '0',
                 paddingRight: row.highlight ? 'var(--sp-2)' : '0',

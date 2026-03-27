@@ -215,11 +215,12 @@ export default function ModelCard() {
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
-                    height: '56px',
+                    minHeight: '56px',
+                    padding: spec.highlight ? 'var(--sp-2)' : 'var(--sp-2) 0',
                     borderBottom: si < model.specs.length - 1 ? '1px solid var(--border-subtle)' : 'none',
                     background: spec.highlight ? 'var(--accent-fill-6)' : 'transparent',
                     borderRadius: spec.highlight ? 'var(--r-sm)' : '0',
-                    padding: spec.highlight ? '0 var(--sp-2)' : '0',
+                    gap: 'var(--sp-2)',
                   }}
                 >
                   <span
@@ -253,11 +254,11 @@ export default function ModelCard() {
             <div
               className="glass-3"
               style={{
-                height: '72px',
+                minHeight: '72px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                padding: '0 var(--sp-5)',
+                padding: 'var(--sp-4) var(--sp-5)',
                 borderRadius: '0 0 var(--r-2xl) var(--r-2xl)',
                 borderTop: '1px solid var(--border-subtle)',
               }}

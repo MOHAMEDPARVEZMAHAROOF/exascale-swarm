@@ -61,6 +61,7 @@ export default function ArchSection() {
         {/* Left Column — Sticky text */}
         <motion.div
           {...REVEAL}
+          className="arch-sticky"
           style={{
             position: 'sticky',
             top: '120px',

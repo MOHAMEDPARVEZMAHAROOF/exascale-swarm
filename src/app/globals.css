@@ -388,6 +388,11 @@ button {
   .model-card-grid, .router-explainer-grid {
     grid-template-columns: 1fr !important;
   }
+  .arch-sticky {
+    position: relative !important;
+    top: 0 !important;
+    margin-bottom: var(--sp-6) !important;
+  }
 }
 
 /* ── COMPONENTS ──────────────────────────────────────────────────────────── */
