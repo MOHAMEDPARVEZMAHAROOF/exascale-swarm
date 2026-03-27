@@ -499,3 +499,34 @@ button {
   border-color: var(--border-glass);
   color: var(--text-primary);
 }
+/* ── RESPONSIVE OVERRIDES ──────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .specs-grid {
+    grid-template-columns: 1fr !important;
+    gap: var(--sp-6) !important;
+    padding: var(--sp-6) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .specs-grid {
+    padding: var(--sp-4) !important;
+    gap: var(--sp-4) !important;
+  }
+
+  .stat-card-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  .spec-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: var(--sp-2) !important;
+    padding: var(--sp-4) var(--sp-2) !important;
+  }
+
+  .spec-value {
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+  }
+}

@@ -17,11 +17,17 @@ export default function ClosingCTA() {
     setStatus('loading');
     
     try {
-      // Send webhook to Activepieces
-      const res = await fetch(WEBHOOK_URL, {
+      // 1. Submit to your Activepieces Webhook
+      const res = await fetch('https://cloud.activepieces.com/api/v1/webhooks/kHKQxxsVxikrlCuluNn1X', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, source: 'exascale_swarm_footer' }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          timestamp: new Date().toISOString(),
+          requestedBrief: 'Premium Technical Brief v1.2',
+        }),
       });
 
       if (res.ok) {

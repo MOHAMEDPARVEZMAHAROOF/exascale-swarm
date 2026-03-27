@@ -211,6 +211,7 @@ export default function ModelCard() {
               {model.specs.map((spec, si) => (
                 <div
                   key={spec.label}
+                  className="spec-row"
                   style={{
                     display: 'flex',
                     justifyContent: 'space-between',
@@ -236,12 +237,14 @@ export default function ModelCard() {
                     {spec.label}
                   </span>
                   <span
+                    className="spec-value"
                     style={{
                       fontFamily: 'var(--font-mono)',
                       fontSize: spec.highlight ? '16px' : '13px',
                       fontWeight: 500,
                       color: spec.highlight ? model.accent : 'var(--text-secondary)',
                       fontVariantNumeric: 'tabular-nums',
+                      textAlign: 'right',
                     }}
                   >
                     {spec.value}

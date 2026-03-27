@@ -48,12 +48,12 @@ export default function HardwareSpecs() {
         style={{
           maxWidth: '1200px',
           margin: '0 auto',
-          padding: 'var(--sp-10)',
           borderRadius: 'var(--r-2xl)',
           display: 'grid',
           gridTemplateColumns: '2fr 3fr',
           gap: 'var(--sp-8)',
           alignItems: 'start',
+          padding: 'var(--sp-10)',
         }}
       >
         {/* Left Column */}
@@ -88,7 +88,7 @@ export default function HardwareSpecs() {
           </p>
 
           {/* Stat cards */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--sp-2)' }}>
+          <div className="stat-card-row" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 'var(--sp-2)' }}>
             {STAT_CARDS.map((card) => (
               <div
                 key={card.number}
@@ -144,6 +144,7 @@ export default function HardwareSpecs() {
           {SPEC_ROWS.map((row, i) => (
               <div
                 key={row.label}
+                className="spec-row"
                 style={{
                   display: 'flex',
                   justifyContent: 'space-between',
@@ -161,22 +162,22 @@ export default function HardwareSpecs() {
               <span
                 style={{
                   fontFamily: 'var(--font-label)',
-                  fontSize: '11px',
+                  fontSize: '10px',
                   fontWeight: 500,
-                  textTransform: 'uppercase',
-                  letterSpacing: '2px',
+                  letterSpacing: '2.5px',
                   color: 'var(--text-quaternary)',
+                  textTransform: 'uppercase',
                 }}
               >
                 {row.label}
               </span>
               <span
+                className="spec-value"
                 style={{
                   fontFamily: 'var(--font-mono)',
-                  fontSize: row.highlight ? '16px' : '13px',
-                  fontWeight: 500,
+                  fontSize: '16px',
+                  fontWeight: 600,
                   color: row.highlight ? 'var(--accent)' : 'var(--text-secondary)',
-                  fontVariantNumeric: 'tabular-nums',
                   textAlign: 'right',
                 }}
               >
