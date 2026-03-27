@@ -207,6 +207,13 @@ export default function HeroSection() {
         transition={{ duration: 0.8, delay: 2, ease: [0.16, 1, 0.3, 1] }}
         whileHover={{ y: -4, opacity: 1, scale: 1.1, filter: 'drop-shadow(0 4px 12px rgba(43, 92, 230, 0.4))' }}
         whileTap={{ scale: 0.95 }}
+        onClick={(e) => {
+          e.preventDefault();
+          const target = document.getElementById('architecture');
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }}
         style={{
           position: 'absolute',
           bottom: 'var(--sp-5)',
