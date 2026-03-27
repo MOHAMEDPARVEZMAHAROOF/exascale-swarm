@@ -5,6 +5,7 @@ const repo = process.env.GITHUB_REPOSITORY?.split('/')[1] || 'exascale-swarm';
 
 const nextConfig: NextConfig = {
   output: "export",
+  trailingSlash: true,
   basePath: isGithubActions ? `/${repo}` : '',
   assetPrefix: isGithubActions ? `/${repo}/` : '',
   images: {
