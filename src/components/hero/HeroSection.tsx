@@ -22,6 +22,7 @@ export default function HeroSection() {
     >
       {/* Eyebrow Pill */}
       <motion.div
+        className="hero-eyebrow"
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.4, delay: 0.2 }}
@@ -53,6 +54,7 @@ export default function HeroSection() {
 
       {/* Headline */}
       <motion.h1
+        className="hero-title"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
@@ -67,6 +69,7 @@ export default function HeroSection() {
         }}
       >
         <span
+          className="hero-number"
           style={{
             fontFamily: 'var(--font-mono)',
             fontSize: 'clamp(64px, 8vw, 108px)',
@@ -84,6 +87,7 @@ export default function HeroSection() {
       </motion.h1>
 
       <motion.p
+        className="hero-subtitle"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -103,6 +107,7 @@ export default function HeroSection() {
 
       {/* Subtitle */}
       <motion.p
+        className="hero-description"
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.9 }}
@@ -136,7 +141,7 @@ export default function HeroSection() {
 
       {/* Metrics Bar — Glass-1 floating card */}
       <motion.div
-        className="glass-1"
+        className="glass-1 metrics-bar"
         initial={{ opacity: 0, y: 32, scale: 0.97 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.8, delay: 1.3, ease: [0.16, 1, 0.3, 1] }}
