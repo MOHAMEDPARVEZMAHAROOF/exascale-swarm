@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import React from 'react';
+import { motion, useMotionValue, useMotionTemplate } from 'framer-motion';
 import SectionLabel from '../shared/SectionLabel';
 
 const STEPS = [
@@ -31,11 +32,121 @@ const STEPS = [
 ];
 
 const REVEAL = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
+  initial: { opacity: 0, y: 32, scale: 0.98 },
+  whileInView: { opacity: 1, y: 0, scale: 1 },
   viewport: { once: true, margin: '-60px' as const },
-  transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const },
+  transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const },
 };
+
+function InteractiveProcessCard({ step, idx }: { step: any, idx: number }) {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
+    const { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  }
+
+  const background = useMotionTemplate`radial-gradient(400px circle at ${mouseX}px ${mouseY}px, rgba(160, 150, 255, 0.1), transparent 80%)`;
+
+  return (
+    <motion.div
+      className="glass-2 glass-shine"
+      initial="initial"
+      whileInView="whileInView"
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+      variants={REVEAL}
+      onMouseMove={handleMouseMove}
+      whileHover={{ y: -8, scale: 1.02 }}
+      style={{
+        position: 'relative',
+        padding: 'var(--sp-8)',
+        borderRadius: 'var(--r-2xl)',
+        cursor: 'default',
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        boxShadow: 'var(--glass-2-shadow)',
+      }}
+    >
+      <motion.div
+        className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 transition duration-300 group-hover:opacity-100"
+        style={{
+          background,
+          position: 'absolute',
+          inset: 0,
+          zIndex: 0,
+          opacity: 0,
+          transition: 'opacity 0.4s',
+        }}
+        onMouseEnter={(e) => { e.currentTarget.style.opacity = '1'; }}
+        onMouseLeave={(e) => { e.currentTarget.style.opacity = '0'; }}
+      />
+      
+      <div style={{ position: 'relative', zIndex: 1 }}>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginBottom: 'var(--sp-6)',
+          }}
+        >
+          <span
+            style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: '12px',
+              color: 'var(--text-quaternary)',
+            }}
+          >
+            {step.step}
+          </span>
+          <span
+            style={{
+              fontFamily: 'var(--font-label)',
+              fontSize: '12px',
+              fontWeight: 600,
+              textTransform: 'uppercase',
+              letterSpacing: '3px',
+              color: 'var(--accent)',
+            }}
+          >
+            {step.label}
+          </span>
+        </div>
+
+        <h3
+          style={{
+            fontFamily: 'var(--font-body)',
+            fontSize: '32px',
+            fontWeight: 700,
+            lineHeight: 1.1,
+            color: 'var(--text-primary)',
+            margin: '0 0 var(--sp-4) 0',
+          }}
+        >
+          {step.title}
+        </h3>
+
+        <p
+          style={{
+            fontFamily: 'var(--font-body)',
+            fontSize: '16px',
+            fontWeight: 400,
+            lineHeight: 1.6,
+            color: 'var(--text-tertiary)',
+            margin: 0,
+          }}
+        >
+          {step.desc}
+        </p>
+      </div>
+    </motion.div>
+  );
+}
 
 export default function RouterExplainer() {
   return (
@@ -78,88 +189,7 @@ export default function RouterExplainer() {
         }}
       >
         {STEPS.map((step, idx) => (
-          <motion.div
-            key={step.step}
-            className="glass-2 glass-shine"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.6, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
-            style={{
-              padding: 'var(--sp-6)',
-              borderRadius: 'var(--r-xl)',
-              cursor: 'default',
-              overflow: 'hidden',
-              transition: 'transform 400ms cubic-bezier(0.16,1,0.3,1), box-shadow 400ms cubic-bezier(0.16,1,0.3,1)',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-4px)';
-              e.currentTarget.style.boxShadow = '0 16px 48px rgba(100,90,140,0.18), 0 4px 12px rgba(100,90,140,0.10), inset 0 1px 0 rgba(255,255,255,1.0)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = 'var(--glass-2-shadow)';
-            }}
-          >
-            {/* Step Header */}
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                marginBottom: 'var(--sp-3)',
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '11px',
-                  color: 'var(--text-quaternary)',
-                }}
-              >
-                {step.step}
-              </span>
-              <span
-                style={{
-                  fontFamily: 'var(--font-label)',
-                  fontSize: '11px',
-                  fontWeight: 500,
-                  textTransform: 'uppercase',
-                  letterSpacing: '3px',
-                  color: 'var(--accent)',
-                }}
-              >
-                {step.label}
-              </span>
-            </div>
-
-            {/* Title */}
-            <h3
-              style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '28px',
-                fontWeight: 700,
-                lineHeight: 1.2,
-                color: 'var(--text-primary)',
-                margin: '0 0 var(--sp-2) 0',
-              }}
-            >
-              {step.title}
-            </h3>
-
-            {/* Description */}
-            <p
-              style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '15px',
-                fontWeight: 400,
-                lineHeight: 1.7,
-                color: 'var(--text-tertiary)',
-                margin: 0,
-              }}
-            >
-              {step.desc}
-            </p>
-          </motion.div>
+          <InteractiveProcessCard key={step.step} step={step} idx={idx} />
         ))}
       </div>
     </section>
