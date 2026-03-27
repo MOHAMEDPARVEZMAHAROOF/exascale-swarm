@@ -48,6 +48,7 @@ export default function ArchSection() {
       }}
     >
       <div
+        className="arch-grid"
         style={{
           maxWidth: '1400px',
           margin: '0 auto',

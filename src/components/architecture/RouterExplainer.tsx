@@ -68,12 +68,13 @@ export default function RouterExplainer() {
       </motion.div>
 
       <div
+        className="router-explainer-grid"
         style={{
           maxWidth: '1000px',
           margin: '0 auto',
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: 'var(--sp-3)',
+          gap: 'var(--sp-4)',
         }}
       >
         {STEPS.map((step, idx) => (

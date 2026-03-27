@@ -40,8 +40,11 @@ export default function HardwareSpecs() {
       }}
     >
       <motion.div
-        className="glass-1"
-        {...REVEAL}
+        className="glass-2 specs-grid"
+        initial={{ opacity: 0, scale: 0.98 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, margin: '-100px' }}
+        transition={{ duration: 0.6 }}
         style={{
           maxWidth: '1200px',
           margin: '0 auto',

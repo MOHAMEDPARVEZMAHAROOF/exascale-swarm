@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import SectionLabel from '../shared/SectionLabel';
 
 export default function ClosingCTA() {
   return (
@@ -117,20 +116,20 @@ export default function ClosingCTA() {
             institutions, and forward-looking capital to build out the full cluster.
           </p>
 
-          {/* Buttons */}
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              gap: 'var(--sp-2)',
-              marginBottom: 'var(--sp-8)',
-              flexWrap: 'wrap',
-            }}
-          >
-            <button className="btn-primary" style={{ padding: '16px 40px', fontSize: '15px' }}>
+          {/* Email Capture Bar */}
+          <div className="email-capture-bar">
+            <input 
+              type="email" 
+              placeholder="Enter your work email..." 
+              aria-label="Email address"
+            />
+            <button className="btn-primary">
               Request Technical Brief →
             </button>
-            <button className="btn-secondary" style={{ padding: '16px 40px', fontSize: '15px' }}>
+          </div>
+          
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 'var(--sp-8)' }}>
+            <button className="btn-secondary" style={{ padding: '12px 24px', fontSize: '14px' }}>
               View on GitHub
             </button>
           </div>

@@ -100,12 +100,15 @@ export default function ModelCard() {
 
       {/* Cards Grid */}
       <div
+        className="model-card-grid"
         style={{
           maxWidth: '1200px',
           margin: '0 auto',
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
           gap: 'var(--sp-4)',
+          position: 'relative',
+          paddingBottom: 'calc(var(--sp-8) * 2)',
         }}
       >
         {MODELS.map((model, idx) => (
